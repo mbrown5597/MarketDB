@@ -1,0 +1,548 @@
+ /* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+  code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} 
+
+ @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap'); 
+
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: #0a372b;
+}
+
+body {
+    min-height: 100vh;
+    background-color: rgb(4, 24, 43);
+} 
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  padding: 1rem 0.5rem;
+}
+
+section {
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgb(0, 0, 0);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+a, a:visited {
+    color: #fff;
+}
+
+input[type="text"],
+input[type="password"],
+button,
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+label,
+ button {
+  margin-top: 1rem;
+} 
+
+button {
+  padding: 0.5rem;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+} 
+
+
+
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+  
+  .search-bar input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: none;
+  }
+  /*  */
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://th.bing.com/th/id/R.d5367106ba69574b5b9c56ddb0eacfd8?rik=lc1vqS97dFL9UQ&pid=ImgRaw&r=0'); /* optional: add a background imbackground-image */
+  }
+  /*  */
+  .hero-text {
+    text-align: center;
+  }
+  /*   .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
+  footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  footer li {
+    margin-right: 1rem;
+  }
+  
+  footer a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    text-decoration: underline;
+  } */
+
+
+
+  /* General styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  /* Import Google Font Nunito */
+  @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+  
+  /* General styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: #0a372b;
+    background-color: rgb(135, 170, 199);
+  }
+  
+  /* App component styles */
+  .App {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  /* Section component styles */
+  section {
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: rgb(0, 0, 0);
+  }
+  
+  /* Form styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+  }
+  
+  /* Link styles */
+  a,
+  a:visited {
+    color: #fff;
+  }
+  
+  /* Input and button styles */
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  select[name=account_type],
+  select[name=job_function],
+  select[name=state],
+  input[name=username],
+  button,
+  textarea {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    background-color: #84a8a7;
+  }
+  
+  /* Label and button styles */
+  label,
+  button {
+    margin-top: 1rem;
+  }
+  
+  /* Instructions styles */
+  .instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #000;
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+  }
+  
+  .instructions > svg {
+    margin-right: 0.25rem;
+  }
+  
+  /* Offscreen styles */
+  .offscreen {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  /* Hide styles */
+  .hide {
+    display: none;
+  }
+  
+  /* Validation styles */
+  .valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+  }
+  
+  .invalid {
+    color: red;
+    margin-left: 0.25rem;
+  }
+  
+  /* Error message styles */
+  .errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Line styles */
+  .line {
+    display: inline-block;
+  }
+  
+  /* Header component styles */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #0f4644;
+  }
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  /* .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar input {
+    flex-grow: 1;
+    /* padding: 0.5rem; */
+    /* border: none;
+  } */ 
+/*   
+  Hero component styles
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    height: 300px;
+    background-image: url("https://th.bing.com/th/id/R.c80a67f54754d960792996ce1fea894e?rik=uf93b7JC3%2bJZuw&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f06%2fBlack-and-Blue-Photos.jpg&ehk=9DYCEymDGIQV49l8XX8vt4LqKZavbptcF9XRjT4tuQA%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+    /* margin-bottom: 2rem; */
+  /* } */
+  
+  /* .hero-text {
+    text-align: center;
+    color: #fff;
+  } */ */
+  
+  /* Card container styles */
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  /* Card styles */
+  .card {
+    width: 30%;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer component styles */
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px; /* or any other height */
+    background-color: #f5f5f5; /* or any other background color */
+  }
+  
+  /* footer p {
+    margin: 0;
+  } */
+  
+
+  .footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* or any other gap size */
+  }
+  
+  .footer li {
+    flex-basis: 30%; /* or any other width */
+    text-align: center;
+  }
+  
+
+
+.footer a {
+  color: #5F1F42;
+  text-decoration: none;
+}
+  
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    height: 36px; /* Add a fixed height */
+    overflow: auto; /* Add overflow property */
+  }
+  
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu li {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu label {
+    display: block;
+    padding: 8px 16px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .menu label:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .menu input[type="radio"] {
+    display: none;
+  }
+  
+  .menu input[type="radio"]:checked + label {
+    background-color: #e5e5e5;
+  }

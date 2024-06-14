@@ -58,27 +58,7 @@ app.get('/', (req,res)=>{
   }
 })
 
-// app.get('/listingData',(req,res)=>{
-//   const tagname = req.body
-//   const sq = `SELECT tags FROM listings_in`
-//   console.log(sq)
-//   db.query(sq,(err,data)=>{
-//     if(err) return res.json(err);
-//     if (data && data.length > 0) {
-//       const tagsArray = data.map(row => row.tags.split('-'));
-//       const flattenedTags = [].concat.apply([], tagsArray);
-//       // Filter out empty values and "+ X more" values
-//       // const filteredTags = flattenedTags.filter(tag => tag !== '' && !tag.startsWith('+'));
-//       const filteredTags = Array.from(new Set(flattenedTags))
-//       .filter(tag => tag !== '' && !tag.startsWith('+'));
-//       res.json(filteredTags);
-//       // console.log(filteredTags);
-//     } else {
-//       res.json([]); // Return an empty array if no data is found
-//       // console.log('No data found');
-//     }
-//   })
-// })
+
 
 app.get('/listingData', (req, res) => {
   const tagname = req.query.tagname;
@@ -117,7 +97,35 @@ app.get('/listingData', (req, res) => {
     }
   });
 });
+app.get('/api/companies', (req, res) => {
+  const sql = 'SELECT * FROM companies_list';
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.error('Error fetching companies:', err);
+      res.status(500).json({ error: 'Error fetching companies' });
+    } else {
+      res.json(result);
+    }
+  });
+});
 
+// API endpoint to fetch a specific company by name
+app.get('/api/company/:companyName', (req, res) => {
+  const companyName = req.params.companyName;
+  const sql = 'SELECT * FROM companies_list WHERE Company_Name = ?';
+  db.query(sql, [companyName], (err, result) => {
+    if (err) {
+      console.error('Error fetching company details:', err);
+      res.status(500).json({ error: 'Error fetching company details' });
+    } else {
+      if (result.length > 0) {
+        res.json(result[0]);
+      } else {
+        res.status(404).json({ message: 'Company not found' });
+      }
+    }
+  });
+});
 app.get('/check-username/:username', (req, res) => {
   const { username } = req.params;
   const sqlQ = 'SELECT * FROM users WHERE username = ?';

@@ -1,45 +1,55 @@
 import React from 'react';
-import './App.css';
+// import './App.css';
 import Login from './Login';
 import Hme from './Home';
-import Companies from './Companies';
+import CompanyList from './CompanyList';
 import RegistrationForm from './Register';
 import ListingCards from './Results';
-import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
+import CompanyDetail from './CompayDetails';
+import {Route, Routes} from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
+const WithoutNave =()=>{
+  return(
+    <div>
+    <Outlet/>
+    </div>
+  )
+}
 
+
+const LayoutWithNav = () => {
+  return (
+    <div>
+      {/* <Hme /> */}
+      <Outlet />
+    </div>
+  );
+};
 function App() {
   return (
-    <Router>
+
+
+
       <div>
-        <nav>
-          <ul style={{ display: "flex", justifyContent: "space-around", color:'black'}}>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Companies">Companies</Link>
-            </li>
-            <li>
-              <Link to="/register">Join us</Link>
-            </li>
-            <li>
-              <Link to="/login">login</Link>
-            </li>
-            <li>
-              <Link to="/Listings">Listings</Link>
-            </li>
-          </ul>
-        </nav>
+        {/* <header>
+        <img src={process.env.PUBLIC_URL + ''} alt="Skyscraper Insurance" />
+          <h1>Welcome to Skyscraper Insurance Directory</h1>
+          <p>We Share Your Vision For A Better Tomorrow</p>
+        </header> */}
         <Routes>
+        <Route element={<LayoutWithNav/>}>
         <Route path='/' element={<Hme/>}/>
+        </Route>
+        <Route element={<WithoutNave/>}>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<RegistrationForm/>}/>
-        <Route path="/Companies" element={<Companies/>}/>
+        <Route path="/Companies" element={<CompanyList/>}/>
+        <Route path="/company/:companyName" element={<CompanyDetail/>} />
         <Route path="/Listings" element={<ListingCards/>}/>
+        </Route>
         </Routes>
       </div>
-      
-    </Router>
+
   );
 
 }

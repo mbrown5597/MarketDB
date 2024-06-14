@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './ListingCard.css';
+import './ListingCard.css'
+import { Link } from 'react-router-dom';
 const ListingCard = ({ service, name, tags, description, states, index }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -18,7 +19,7 @@ const ListingCard = ({ service, name, tags, description, states, index }) => {
     <div className="card">
 
       <p className="service">{service}</p>
-      <p className="name"> {name}</p>
+      <p><Link to={`/company/${name}`}> {name}</Link></p>
       <p className="tags"> {tags.join(', ')}</p>
       {isExpanded && (
         <>
@@ -42,7 +43,7 @@ const ListingCards = () => {
     const [searchTriggered, setSearchTriggered] = useState(false);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(30);
+    const [itemsPerPage] = useState(30);
 
   
     useEffect(() => {
@@ -65,10 +66,10 @@ const ListingCards = () => {
       setFilteredListings(listings.filter(listing =>
         listing.service.toLowerCase().includes(searchInput.toLowerCase()) ||
         listing.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-        listing.tags.join(' ').toLowerCase().includes(searchInput.toLowerCase()) ||
-        listing.description.toLowerCase().includes(searchInput.toLowerCase()) ||
-        listing.states.join(' ').toLowerCase().includes(searchInput.toLowerCase())
-      ));
+        listing.tags.join(' ').toLowerCase().includes(searchInput.toLowerCase()) 
+        // listing.description.toLowerCase().includes(searchInput.toLowerCase()) ||
+        // listing.states.join(' ').toLowerCase().includes(searchInput.toLowerCase())
+        ));
       setSearchTriggered(true)
     };
     const handlePageChange = (pageNumber) => {

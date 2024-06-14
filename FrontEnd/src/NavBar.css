@@ -1,0 +1,33 @@
+/* src/components/NavBar.css */
+.nav-bar {
+    background-color: #f8f8f8;
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .nav-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .nav-bar li {
+    display: inline;
+  }
+  
+  .nav-bar a {
+    color: #b5a25d; /* Gold color */
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .nav-bar a:hover {
+    text-decoration: underline;
+  }
+  

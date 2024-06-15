@@ -242,7 +242,7 @@
     display: block;
   }
   .company-url:visited{
-    color: #4e4d4d ;
+    color: #8b922c ;
   }
   .company-url:hover {
     text-decoration: underline;
@@ -258,13 +258,16 @@
     display: inline-block;
     padding: 5px 10px;
     font-size: 0.9em;
-    color: #fff;
+    align-self: center;
+    width: 15vw;
+    color: #495391;
     background-color: #d8d8d8;
     border: none;
     border-radius: 300px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    /* padding: 2px 0px 14px 25px; */
   }
   /* .more-button {
     display: inline-block;
@@ -280,6 +283,9 @@
   } */
   .more-button:hover {
     background-color: #b3b3b3;
+  }
+  .more-button:visited{
+    color: #495391;
   }
   .pagination {
     display: flex;

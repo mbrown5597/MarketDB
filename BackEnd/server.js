@@ -7,6 +7,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser')
 
 
+
 const app = express();
 app.use(cors({
   origin:"http://localhost:3000",
@@ -16,12 +17,12 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
-  secret:'sec123',
+  secret:'security51483',
   resave:false,
   saveUninitialized:false,
   cookie:{
     secure:false,
-    maxAge: 1000 * 60 * 60 * 24 //this is for 24 hours
+    maxAge: 1000 * 60 * 60 * 24 
   }
 }))
 
@@ -29,20 +30,23 @@ app.use(session({
 app.get('/use', (req,res)=>{
   return res.json('hello from use')
 })
-// Configure MySQL
+
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'Sky_ScraperDB',
-  connectTimeout: 5000
+  host: 'riskbean-mysql-db.mysql.database.azure.com',
+  user: 'riskbeanAdmin',
+  password: 'RB55P@$$word',
+  database: 'riskbean_db',
+  connectTimeout: 5000,
+  ssl: {
+    rejectUnauthorized: true 
+  }
 });
 
 app.post('/register',(req,res)=>{
   const { username, email, password, state, account_type, job_function } = req.body;
   bcrypt.hash(password,10,(err,hashedPassword)=>{
   const sqlQ = `INSERT INTO users (username,email, password,state,account_type,job_function) VALUES ('${username}','${email}','${hashedPassword}','${state}','${account_type}','${job_function}')`;
-  console.log(sqlQ)
+
   db.query(sqlQ, [username, email, hashedPassword, state, account_type, job_function], (err, data)=>{
     if(err) return res.json(err)
     return res.json(data)
@@ -59,18 +63,25 @@ app.get('/', (req,res)=>{
 })
 
 
-
 app.get('/listingData', (req, res) => {
   const tagname = req.query.tagname;
-  let sql = `SELECT service, name, GROUP_CONCAT(tags) as tags, description, GROUP_CONCAT(availability) as states FROM listings_in`;
+  let sql = `
+    SELECT 
+      service, 
+      name, 
+      GROUP_CONCAT(tags) as tags, 
+      description, 
+      GROUP_CONCAT(availability) as states 
+    FROM riskbean_db.listings_list
+  `;
 
   if (tagname) {
     sql += ` WHERE FIND_IN_SET('${tagname}', tags)`;
   }
 
-  sql += ` GROUP BY service`;
+  sql += ` GROUP BY service, name, description;`;
 
-  console.log(sql);
+  // console.log(sql);
 
   db.query(sql, (err, data) => {
     if (err) return res.json(err);
@@ -93,7 +104,7 @@ app.get('/listingData', (req, res) => {
 
       res.json(results);
     } else {
-      res.json([]); // Return an empty array if no data is found
+      res.json([]); 
     }
   });
 });
@@ -109,7 +120,7 @@ app.get('/api/companies', (req, res) => {
   });
 });
 
-// API endpoint to fetch a specific company by name
+
 app.get('/api/company/:companyName', (req, res) => {
   const companyName = req.params.companyName;
   const sql = 'SELECT * FROM companies_list WHERE Company_Name = ?';
@@ -126,6 +137,24 @@ app.get('/api/company/:companyName', (req, res) => {
     }
   });
 });
+
+app.get('/api/listing/:name', (req, res) => {
+  const name = req.params.name;
+  const sql = 'SELECT * FROM riskbean_db.listings_list WHERE name = ?';
+  db.query(sql, [name], (err, result) => {
+    if (err) {
+      console.error('Error fetching listing details:', err);
+      res.status(500).json({ error: 'Error fetching listing details' });
+    } else {
+      if (result.length > 0) {
+        res.json(result[0]);
+      } else {
+        res.status(404).json({ message: 'listing not found' });
+      }
+    }
+  });
+});
+
 app.get('/check-username/:username', (req, res) => {
   const { username } = req.params;
   const sqlQ = 'SELECT * FROM users WHERE username = ?';
@@ -143,7 +172,7 @@ app.post('/login', (req, res) => {
     if (err) return res.json(err);
     if (data.length > 0){
       req.session.username = data[0].username;
-      console.log(req.session.username);
+ 
     }
     if (data.length === 0){
        return res.json({ message: 'User not found' })};
@@ -158,15 +187,13 @@ app.post('/login', (req, res) => {
     });
   });
 });
-
 app.get('/listingCounts', (req,res)=>{
-  const query = `SELECT COUNT(*) FROM listings_in`
+  const query = `SELECT COUNT(*) FROM riskbean_db.listings_list`
   db.query(query,(err,data)=>{
     if(err) return res.json(err);
     if(data.length > 0) return res.json(data[0])
   })
 })
-
 
 app.get('/UserLevelPrivilege', (req, res) => {
   const query = "SELECT * FROM users WHERE user_type = 'user'";
@@ -179,12 +206,10 @@ app.get('/UserLevelPrivilege', (req, res) => {
     }
   });
 });
-
 db.connect((err) => {
   if (err) throw err;
   console.log('Connected to MySQL');
 });
-
 
 const port = process.env.PORT || 5000;
 app.get('/users',(req,res)=>{
@@ -194,8 +219,6 @@ app.get('/users',(req,res)=>{
     return res.json(data)
   })
 })
-
-
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

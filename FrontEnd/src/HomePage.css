@@ -1,7 +1,7 @@
-.home-page {
+/* .home-page {
      text-align: center;
     font-family: Arial, sans-serif;
-     background-image: url('./Pics/ecc5ef2d-1395-4a98-a9e0-a46617fcc845.jpg'); 
+     background-image: url('./Pics/07ee9305-e441-4b88-9d17-74930e95736e.jfif'); 
      background-size: 100%;
     background-position: center;
     height: 100vh;
@@ -25,7 +25,7 @@
   padding: 0;
   background-image: url('./Pics/ecc5ef2d-1395-4a98-a9e0-a46617fcc845.jpg'); 
   } */
-  .header {
+  /* .header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,4 +79,198 @@
   .navbar a:hover {
     color: #495391;
   }
-  
+    */ 
+
+    .home-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('./Pics/07ee9305-e441-4b88-9d17-74930e95736e.jfif');
+      font-family: Arial, sans-serif;
+    }
+    
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    
+    .login {
+      font-size: 16px;
+      color: #4CAF50;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    
+    .login svg {
+      margin-right: 5px;
+    }
+    
+    .logo-container {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .logo-container .logo {
+      width: 50%;
+    }
+    
+    .logo-container h1 {
+      font-size: 48px;
+      color: #333;
+    }
+    
+    .logo-container p {
+      font-size: 35px;
+      color: #666;
+    }
+    
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .search-box {
+      display: flex;
+      align-items: center;
+      background-image: url('./Pics/Screenshot\ 2024-06-20\ 194306.png');
+      /* border: 1px solid #ddd; */
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      /* margin-top: 50px; */
+      width: 600px;
+    }
+    .location-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin-bottom: 90px;
+      margin-top: 30px;
+      background-image: url('./Pics/Screenshot\ 2024-06-20\ 194306.png');
+      width: 400px;
+    }
+    
+    .search-box  .searchButton{
+      font-size: 20px;
+      color: #064938;
+      /* margin-left: 2px; */
+      cursor: pointer;
+      top: 50%;
+      left: 50%;
+      align-items: center;
+      position: absolute;
+      transform: translate(-50%,-50%);
+    }
+    .search-box  .searchButton:hover{
+      font-size: 20px;
+      color: #4CAF50;
+      /* margin-left: 2px; */
+      cursor: pointer;
+      top: 50%;
+      left: 50%;
+      align-items: center;
+      position: absolute;
+      transform: translate(-50%,-50%);
+    }
+    /* .location-box  {
+      font-size: 20px;
+      color: #4CAF50;
+      margin-left: 10px;
+      top: 50%;
+      left: 50%;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+    } */
+    .search-box .btn{
+      background-image: url('./Pics/Screenshot\ 2024-06-20\ 194306.png');
+      width: 60px;
+      height: 100%;
+      left: 0;
+      top: 0;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .search-box .btn:hover{
+      background-image: url('./Pics/green.png');
+      width: 60px;
+      height: 100%;
+      border-radius: 20%;
+      color: #4CAF50;
+      left: 0;
+      top: 0;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      background-image: url('./Pics/Screenshot\ 2024-06-20\ 194306.png');
+    }
+    .location-box select {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 16px;
+    }
+    .search-box input::placeholder,
+    .location-box select::placeholder {
+      color: #bbb;
+    }
+    
+    .location-box select {
+      appearance: none;
+      background: transparent;
+    }
+    
+    .location-box {
+      position: relative;
+    }
+    
+    .location-box select {
+      padding-left: 25px;
+    }
+    
+    .location-box i {
+      position: absolute;
+      left: 10px;
+    }
+    
+    .search-box:hover {
+      border-color: #4CAF50;
+    }
+    .location-box:hover {
+      border-color: #4CAF50;
+    }
+    @media (max-width: 768px) {
+      .logo-container h1 {
+        font-size: 36px;
+      }
+    
+      .logo-container p {
+        font-size: 14px;
+      }
+    
+      .search-box,
+      .location-box {
+        width: 300px;
+      }
+    }
+    

@@ -4,8 +4,9 @@ import Login from './Login';
 import Hme from './Home';
 import CompanyList from './CompanyList';
 import RegistrationForm from './Register';
-import ListingCards from './Results';
+import ListingComponent from './Results';
 import CompanyDetail from './CompayDetails';
+
 import {Route, Routes} from 'react-router-dom'
 import { Outlet } from 'react-router-dom';
 const WithoutNave =()=>{
@@ -45,7 +46,7 @@ function App() {
         <Route path="/register" element={<RegistrationForm/>}/>
         <Route path="/Companies" element={<CompanyList/>}/>
         <Route path="/company/:companyName" element={<CompanyDetail/>} />
-        <Route path="/Listings" element={<ListingCards/>}/>
+        <Route path="/Listings" element={<ListingComponent/>}/>
         </Route>
         </Routes>
       </div>
